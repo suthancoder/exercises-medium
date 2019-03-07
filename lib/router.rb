@@ -1,8 +1,8 @@
 
 class Router
 
-  def initialize
-
+  def initialize(posts_controller)
+    @posts_controller = posts_controller
   end
 
 
@@ -12,8 +12,23 @@ class Router
     while counter != 5 do
       intro_menu
       counter = gets.chomp.to_i
+      direct(counter)
     end
   end
+
+  def direct(counter)
+    case counter
+    when 1
+      @posts_controller.list
+    when 2
+      @posts_controller.add
+    when 3
+            puts "read"
+    when 4
+      @posts_controller.mark_read
+    end
+  end
+
 
   def intro_menu
     puts "1. List posts"
